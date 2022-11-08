@@ -1,0 +1,119 @@
+#title: Model of a Tube in sandstone_dry
+=================================================================
+
+-------------------------
+-Environment Definitions-
+-------------------------
+material:  er      sigma   ur      alpha*      identifier
+--------   ----    -----   ----    ------      ----------
+material:  6.0     1e-3    1.0     0.0         concrete
+material:  2.0     1e-3    10.0    0.5         damp_sand
+#material: 10.0    1e-7    2.0     1e-2        dry_sand
+#material: 6.0     0.01    1.0     0.0         plastic
+material:  80.0    0.5     1.0     0.0         fresh_water
+material:  2.0     0.01    2.0     2.0         asphalt_dry
+material:  1e4     56e5    1.0     0.0         copper
+#material: 5.0     1e-6    2.0     2.0         sandstone_dry
+
+er     : relative permittivity
+sigma  : conductivity
+ur     : relative permeability
+alpha* : magnetic loss
+
+f real number: 1.5 = 15e-1 = 0.15e1
+=================================================================
+
+------------------------
+-Domain Creation-
+------------------------
+#domain:   0.25  0.60 0.50
+
+soil_peplinski: 0.9 0.1 0.2 2.66 0.001 0.010 my_soil
+
+#fractal_box: 0 0 0  0.25 0.60 0.40 1.5 1 1 1 1 sandstone_dry soilBox 14
+
+#add_surface_roughness: 0 0 0.4 0.25 0.60 0.40 1 1 1 0.40 0.44 soilBox 14
+
+#add_grass: 0 0 0.40 0.25 0.60 0.40 1 0.420 0.422 150 soilBox 14
+
+#add_surface_water: 0 0 0.4 0.25 0.60 0.4 0.405 soilBox
+=================================================================
+
+------------------------
+-Clutters in the media-
+------------------------
+#sphere: 0.125 0.30 0.23 0.002  dry_sand
+
+#sphere: 0.135 0.20 0.18 0.003  dry_sand
+
+#sphere: 0.115 0.20 0.28 0.004  dry_sand
+
+#sphere: 0.135 0.35 0.23 0.003  dry_sand
+
+#sphere: 0.085 0.15 0.03 0.003  dry_sand
+
+#sphere: 0.155 0.35 0.10 0.002  dry_sand
+
+#sphere: 0.135 0.45 0.00 0.005  dry_sand
+
+#cylinder: 0.125 0.40 0.10  0.125 0.40 0.11  0.010 plastic
+#cylinder: 0.125 0.40 0.105  0.125 0.40 0.11  0.008 dry_sand
+
+#cylinder: 0.125 0.10 0.20  0.125 0.30 0.10  0.002 plastic
+
+#triangle: 0.105 0.28 0.30 0.140 0.30 0.30 0.125 0.35 0.30 0.025 dry_sand  
+
+#triangle: 0.095 0.18 0.20 0.138 0.15 0.20 0.125 0.20 0.20 0.025 dry_sand  
+
+------------------------
+-Object to be detected-
+------------------------
+#cylinder: 0.125 0.30 0.25  0.125 0.30 0.30  0.050 pec
+
+#cylinder: 0.125 0.30 0.30  0.125 0.30 0.31  0.045 pec
+#cylinder: 0.125 0.30 0.24  0.125 0.30 0.25  0.045 pec
+
+#cylindrical_sector: z  0.125 0.30  0.31 0.33  0.035  20 20 pec
+#cylindrical_sector: z  0.125 0.30  0.31 0.33  0.033  20 20 sandstone_dry   
+
+#cylindrical_sector: z  0.125 0.30  0.31 0.33  0.035  140 20 pec
+#cylindrical_sector: z  0.125 0.30  0.31 0.33  0.033  140 20 sandstone_dry   
+
+#cylindrical_sector: z  0.125 0.30  0.31 0.33  0.035  260 20 pec
+#cylindrical_sector: z  0.125 0.30  0.31 0.33  0.033  260 20 sandstone_dry   
+
+#cylinder: 0.125 0.30 0.33  0.125 0.30 0.34  0.045 pec
+#cylinder: 0.125 0.30 0.33  0.125 0.30 0.34  0.043 sandstone_dry
+=================================================================
+
+------------------------
+-Simulation Parameters-
+------------------------
+#dx_dy_dz: 0.002 0.002 0.002
+#time_window: 8e-9
+#messages: y
+#num_threads: 8
+
+
+=================================================================
+
+-------------------------
+-Transceiver definitions-
+-------------------------
+waveform: gaussian 2 2.5e9 my_wave_form
+#waveform: gaussiandot 2 2.5e9 my_wave_form
+
+#hertzian_dipole: x 0.105 0.01 0.49 my_wave_form
+#rx: 0.145 0.01 0.49
+
+#src_steps: 0.0 0.02 0.0
+#rx_steps: 0.0 0.02 0.0
+=================================================================
+
+-------------------------
+-Geometric View-
+-------------------------
+
+#geometry_view: 0.0 0.0 0.0 0.25 0.60 0.50 0.002 0.002 0.002 A n
+-----------------------------------------------------------------
+
