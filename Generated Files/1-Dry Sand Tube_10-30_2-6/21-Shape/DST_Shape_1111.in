@@ -1,0 +1,82 @@
+#title: Model of a Sphere in free-space
+=================================================================
+-------------------------
+-Environment Definitions-
+-------------------------
+material:  er      sigma   ur      alpha*      identifier
+--------   ----    -----   ----    ------      ----------
+material:  6.0     1e-3    1.0     0.0         concrete
+material:  8.0     1e-2    1.0     0.0         damp_sand
+#material: 10.0    1e-7    2.0     1e-2        dry_sand
+material:  6.0     0.01    1.0     0.0         plastic
+material:  80.0    0.5     1.0     0.0         fresh_water
+material:  2.0     0.01    2.0     2.0         asphalt_dry
+material:  1e4     56e5    1.0     0.0         copper
+
+er     : relative permittivity
+sigma  : conductivity
+ur     : relative permeability
+sigma* : magnetic loss
+
+f real number: 1.5 = 15e-1 = 0.15e1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+:Object is 2cm away from both edges and 5cm deep in the ground 
+:with top face @45cm and ground @50cm
+:Object is 11cm in diameter and 7cm in height
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#domain:   0.15  0.60 0.60
+#box: 	0.0   0.0  0.0   0.15  0.60 0.50  dry_sand
+#cylinder: 0.075 0.30 0.35  0.075 0.30 0.40  0.055 pec
+
+#cylinder: 0.075 0.30 0.40  0.075 0.30 0.41  0.050 pec
+#cylinder: 0.075 0.30 0.34  0.075 0.30 0.35  0.050 pec
+
+#cylindrical_sector: z  0.075 0.30  0.41 0.43  0.050  20 20 pec
+#cylindrical_sector: z  0.075 0.30  0.41 0.43  0.048  20 20 dry_sand   
+
+#cylindrical_sector: z  0.075 0.30  0.41 0.43  0.050  140 20 pec
+#cylindrical_sector: z  0.075 0.30  0.41 0.43  0.048  140 20 dry_sand   
+
+#cylindrical_sector: z  0.075 0.30  0.41 0.43  0.050  260 20 pec
+#cylindrical_sector: z  0.075 0.30  0.41 0.43  0.048  260 20 dry_sand   
+
+#cylinder: 0.075 0.30 0.43  0.075 0.30 0.44  0.050 pec
+#cylinder: 0.075 0.30 0.43  0.075 0.30 0.44  0.048 dry_sand
+
+
+------------------------
+-Simulation Parameters-
+------------------------
+#dx_dy_dz: 0.002 0.002 0.002
+#time_window: 8e-9
+#messages: y
+#num_threads: 8
+
+
+=================================================================
+-------------------------
+-Transceiver definitions-
+-------------------------
+waveform: gaussian 2 2.5e9 my_wave_form
+#waveform: gaussiandot 2 2.5e9 my_wave_form
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+:Transmitter and Receiver placed 5cm above ground, @55cm
+:Transmitter and Receiver placed 4cm apart @5.5cm and @9.5cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#hertzian_dipole: x 0.055 0.01 0.55 my_wave_form
+#rx: 0.095 0.01 0.55
+
+#src_steps: 0.0 0.02 0.0
+#rx_steps: 0.0 0.02 0.0
+
+
+=================================================================
+-------------------------
+-Geometric View-
+-------------------------
+
+geometry_view: 0.0 0.0 0.0 0.15 0.60 0.60 0.002 0.002 0.002 Pozitive_Image n
+-----------------------------------------------------------------
+
